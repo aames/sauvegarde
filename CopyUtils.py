@@ -2,6 +2,7 @@ import hashlib
 import sys
 import os
 import shutil
+import lzma
 
 
 class Copy:
@@ -40,6 +41,35 @@ class Copy:
             print("Unexpected error: ")
             sys.exc_info()[0]
             raise
+
+
+class Compression:
+    def __init__(self):
+        pass
+
+    def update_archive(self, compression, file_or_dir, target_for_update, temp):
+        # Decompress + eval changes... or there must be a better way
+        # To be explored...
+        raise NotImplementedError
+
+    def archive(self, compression_type, file_or_dir, destination, temp):
+        # Figure out the type, then whether it's a file or dir,
+        # then check the destination is empty
+        # Next, check the temp area has enough space
+        # Finally, check there is enough space in destination for the temp file
+        pass
+
+    def zip_file(self, file, destination, temp):
+        pass
+
+    def zip_dir(self, directory, destination, temp):
+        pass
+
+    def lzma(self, directory, destination, temp):
+        pass
+
+    def lzma2(self, directory, destination, temp):
+        pass
 
 
 class ChecksumCalculator:
